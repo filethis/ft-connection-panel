@@ -1,6 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../iron-label/iron-label.html">
+<link rel="import" href="../paper-item/paper-item.html">
 
 <!--
 `ft-connections-panel`
@@ -15,8 +17,59 @@ An element that displays a list of FileThis connection resources
 
     <template>
 
-        <div>
-            ft-connections-panel
+        <!-- List panel and details panel -->
+        <div class="layout horizontal"
+             style="width:100%; height:100%; background-color:white;">
+
+            <!-- List panel -->
+            <div class="layout vertical"
+                 style="height:100%; border-right:1px solid #DDD;">
+
+                <!-- Title -->
+                <div class="layout horizontal center"
+                     style="width:100%; height:40px; padding-left:10px;">
+                    <iron-label style="font-family:Arial;">
+                        My Connections
+                    </iron-label>
+                </div>
+                <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
+
+                <!-- List -->
+                <ft-connection-list
+                    id="connectionList"
+                    connections="[[connections]]"
+                    selected-connection="{{selectedConnection}}"
+                    style="height:100%;">
+                </ft-connection-list>
+
+            </div>
+
+            <!-- Details panel -->
+            <div class="layout vertical"
+                 style="width:100%; height:100%;"
+                 hidden$="{{!selectedConnection}}">
+
+                <!-- Title -->
+                <div class="layout horizontal center"
+                     style="width:100%; height:40px; padding-left:10px;">
+                    <iron-label id="connectionName" style="font-family:Arial;">[[selectedConnection.name]]</iron-label>
+                </div>
+                <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
+
+                <!-- Details -->
+                <div style="width:100%; height:100%;">connection-details</div>
+                <!--<connection-details-->
+                        <!--id="connectionDetails"-->
+                        <!--sources="[[sources]]"-->
+                        <!--connection="[[selectedConnection]]"-->
+                        <!--style="width:100%; height:100%;">-->
+                <!--</connection-details>-->
+            </div>
+
+            <!--<user-interaction-dialog id="interactionDialog"-->
+                <!--on-cancel-button-clicked="onInteractionDialogCancel"-->
+                <!--on-commit-button-clicked="onInteractionDialogCommit">-->
+            <!--</user-interaction-dialog>-->
         </div>
 
     </template>
@@ -27,6 +80,18 @@ An element that displays a list of FileThis connection resources
             is: 'ft-connections-panel',
 
             properties: {
+                connections:
+                {
+                    type: Array,
+                    notify: true,
+                    value: []
+                },
+                selectedConnection:
+                {
+                    type: Object,
+                    notify: true,
+                    value: null
+                }
             }
 
         });
