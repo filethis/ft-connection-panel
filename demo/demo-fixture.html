@@ -18,7 +18,10 @@ An element that displays a list of FileThis connection resources
 
     <template>
 
-        <ft-connections-panel id="panel"></ft-connections-panel>
+        <div class="layout vertical center">
+            <ft-connections-panel id="panel" style="width:100%; border:1px solid #DDD; background-color:white"></ft-connections-panel>
+        </div>
+
 
     </template>
 
@@ -30,7 +33,52 @@ An element that displays a list of FileThis connection resources
 
             properties:
             {
-            }
+            },
+
+            ready: function()
+            {
+                this._loadFakeSources();
+            },
+
+            _loadFakeSources: function()
+            {
+                var path = "fake-sources.json";
+
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.overrideMimeType("application/json");
+                xmlHttpRequest.open('GET', path, true);
+                xmlHttpRequest.onreadystatechange = function()
+                {
+                    if (xmlHttpRequest.readyState == 4 &&
+                        xmlHttpRequest.status == "200")
+                    {
+                        var sources = JSON.parse(xmlHttpRequest.responseText);
+                        panel.sources = sources;
+
+                        this._loadFakeConnections()
+                    }
+                }.bind(this);
+                xmlHttpRequest.send();
+            },
+
+            _loadFakeConnections: function()
+            {
+                var path = "fake-connections.json";
+
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.overrideMimeType("application/json");
+                xmlHttpRequest.open('GET', path, true);
+                xmlHttpRequest.onreadystatechange = function()
+                {
+                    if (xmlHttpRequest.readyState == 4 &&
+                        xmlHttpRequest.status == "200")
+                    {
+                        var connections = JSON.parse(xmlHttpRequest.responseText);
+                        panel.connections = connections;
+                    }
+                };
+                xmlHttpRequest.send();
+            }.bind(this)
 
         });
 
