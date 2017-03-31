@@ -79,18 +79,24 @@ An element that displays a list of FileThis connection resources
             is: 'ft-connections-panel',
 
             properties: {
+
+                /** The list of connection resources to be displayed. */
                 connections:
                 {
                     type: Array,
                     notify: true,
                     value: []
                 },
+
+                /** The currently-selected connection, if any. */
                 selectedConnection:
                 {
                     type: Object,
                     notify: true,
                     value: null
                 },
+
+                /** The list of all sources. This is used to display source-specific properties for each connection. */
                 sources:
                 {
                     type: Array,
