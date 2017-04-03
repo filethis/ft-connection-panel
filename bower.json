@@ -1,15 +1,14 @@
 {
     "name": "ft-connections-panel",
-    "version": "0.0.2",
     "description": "An element that displays a list of FileThis connection resources",
     "main": "ft-connections-panel.html",
     "dependencies": {
         "polymer": "Polymer/polymer#^1.4.0",
         "iron-label": "PolymerElements/iron-label#^1.0.2",
         "paper-item": "PolymerElements/paper-item#^1.2.1",
-        "ft-connection-details": "FileThis/ft-connection-details#^0.0.2",
-        "ft-connection-list": "FileThis/ft-connection-list#^0.0.2",
-        "ft-connection-list-item": "FileThis/ft-connection-list-item#^0.0.3"
+        "ft-connection-details": "FileThis/ft-connection-details#^0.0.3",
+        "ft-connection-list": "FileThis/ft-connection-list#^0.0.3",
+        "ft-connection-list-item": "FileThis/ft-connection-list-item#^0.0.4"
     },
     "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
