@@ -52,7 +52,21 @@ An element that displays a list of FileThis connection resources
                 <!-- Title -->
                 <div class="layout horizontal center"
                      style="width:100%; height:40px; padding-left:10px;">
+
+                    <!-- Title -->
                     <iron-label id="connectionName" style="font-family:Arial;font-size:14pt;">[[selectedConnection.name]]</iron-label>
+
+                    <div class="flex"></div>
+                    <div style="width:25px;"></div>
+
+                    <!-- Delete button -->
+                    <paper-icon-button
+                            icon="delete"
+                            title="Delete"
+                            style="color:#777777; margin-right:15px"
+                            disabled="[[!selectedDocument]]"
+                            on-click="_onDeleteButtonClicked">
+                    </paper-icon-button>
                 </div>
                 <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
 
@@ -77,6 +91,13 @@ An element that displays a list of FileThis connection resources
         Polymer({
 
             is: 'ft-connections-panel',
+
+            /**
+             * Fired when the "Delete" button is clicked.
+             *
+             * @event delete
+             * @param {Object} connection The selected connection to be deleted.
+             */
 
             properties: {
 
@@ -103,6 +124,11 @@ An element that displays a list of FileThis connection resources
                     notify: true,
                     value: []
                 }
+            },
+
+            _onDeleteButtonClicked: function(event)
+            {
+                this.fire('delete', this.selectedConnection);
             }
 
         });
