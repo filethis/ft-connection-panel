@@ -19,6 +19,7 @@ limitations under the License.
 
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
 <link rel="import" href="../ft-connection-details/ft-connection-details.html">
 
@@ -81,7 +82,7 @@ An element that displays a list of FileThis connection resources
                             icon="delete"
                             title="Delete"
                             style="color:#777777; margin-right:15px"
-                            disabled="[[!selectedDocument]]"
+                            disabled="[[!selectedConnection]]"
                             on-click="_onDeleteButtonClicked">
                     </paper-icon-button>
                 </div>
