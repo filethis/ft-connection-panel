@@ -19,6 +19,7 @@ limitations under the License.
 
 <!-- Imports -->
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="../ft-connections-panel.html">
 
@@ -33,12 +34,39 @@ An element that displays a list of FileThis connection resources
 
     <style include="iron-flex iron-flex-alignment"></style>
 
+    <style is="custom-style">
+
+        paper-checkbox {
+            width:165px;
+            margin-bottom:16px;
+        }
+
+    </style>
+
     <template>
 
-        <div class="layout vertical center">
-            <ft-connections-panel id="panel" style="width:100%; border:1px solid #DDD; background-color:white"></ft-connections-panel>
-        </div>
+        <div class="layout horizontal center">
 
+            <!-- Settings -->
+            <div class="layout vertical center" style="width:175px">
+
+                <paper-checkbox checked="{{showDeleteButton}}">
+                    Show Delete Button
+                </paper-checkbox>
+            </div>
+
+            <!-- Panel -->
+            <div
+                    class="layout vertical center"
+                    style="border:1px solid #DDD;">
+                <ft-connections-panel
+                        id="panel"
+                        show-delete-button="[[showDeleteButton]]"
+                        style="width:100%; border:1px solid #DDD; background-color:white">
+                </ft-connections-panel>
+            </div>
+
+        </div>
 
     </template>
 
@@ -50,6 +78,11 @@ An element that displays a list of FileThis connection resources
 
             properties:
             {
+                showDeleteButton:
+                {
+                    type: Boolean,
+                    value: true
+                }
             },
 
             ready: function()
@@ -66,8 +99,8 @@ An element that displays a list of FileThis connection resources
                 xmlHttpRequest.open('GET', path, true);
                 xmlHttpRequest.onreadystatechange = function()
                 {
-                    if (xmlHttpRequest.readyState == 4 &&
-                        xmlHttpRequest.status == "200")
+                    if (xmlHttpRequest.readyState === 4 &&
+                        xmlHttpRequest.status === 200)
                     {
                         var sources = JSON.parse(xmlHttpRequest.responseText);
                         panel.sources = sources;
@@ -87,8 +120,8 @@ An element that displays a list of FileThis connection resources
                 xmlHttpRequest.open('GET', path, true);
                 xmlHttpRequest.onreadystatechange = function()
                 {
-                    if (xmlHttpRequest.readyState == 4 &&
-                        xmlHttpRequest.status == "200")
+                    if (xmlHttpRequest.readyState === 4 &&
+                        xmlHttpRequest.status === 200)
                     {
                         var connections = JSON.parse(xmlHttpRequest.responseText);
                         panel.connections = connections;

@@ -22,6 +22,8 @@ limitations under the License.
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
 <link rel="import" href="../ft-connection-details/ft-connection-details.html">
+<link rel="import" href="../ft-icon-button/ft-icon-button.html">
+<link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 
 <!--
 `ft-connections-panel`
@@ -43,12 +45,27 @@ An element that displays a list of FileThis connection resources
             <div class="layout vertical"
                  style="height:100%; border-right:1px solid #DDD;">
 
-                <!-- Title -->
+                <!-- Header -->
                 <div class="layout horizontal center"
-                     style="width:100%; height:40px; padding-left:10px;">
+                     style="height:60px; padding-left:10px; padding-right:10px;">
+
+                    <!-- Title -->
                     <iron-label style="font-family:Arial;font-size:14pt">
                         My Connections
                     </iron-label>
+
+                    <div class="flex"></div>
+
+                    <!-- Delete button -->
+                    <ft-icon-button
+                            id="deleteButton"
+                            icon="delete"
+                            label="Delete"
+                            disabled="[[!selectedConnection]]"
+                            hidden$="[[!showDeleteButton]]"
+                            on-click="_onDeleteButtonClicked">
+                    </ft-icon-button>
+
                 </div>
                 <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
 
@@ -64,27 +81,15 @@ An element that displays a list of FileThis connection resources
 
             <!-- Details panel -->
             <div class="layout vertical"
-                 style="width:100%; height:100%;"
+                 style="width:450px; height:100%;"
                  hidden$="{{!selectedConnection}}">
 
                 <!-- Title -->
                 <div class="layout horizontal center"
-                     style="width:100%; height:40px; padding-left:10px;">
+                     style="width:100%; height:60px; padding-left:10px;">
 
                     <!-- Title -->
                     <iron-label id="connectionName" style="font-family:Arial;font-size:14pt;">[[selectedConnection.name]]</iron-label>
-
-                    <div class="flex"></div>
-                    <div style="width:25px;"></div>
-
-                    <!-- Delete button -->
-                    <paper-icon-button
-                            icon="delete"
-                            title="Delete"
-                            style="color:#777777; margin-right:15px"
-                            disabled="[[!selectedConnection]]"
-                            on-click="_onDeleteButtonClicked">
-                    </paper-icon-button>
                 </div>
                 <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
 
@@ -102,6 +107,9 @@ An element that displays a list of FileThis connection resources
                 <!--on-commit-button-clicked="onInteractionDialogCommit">-->
             <!--</user-interaction-dialog>-->
         </div>
+
+        <!-- Confirmation dialog -->
+        <ft-confirmation-dialog id="confirmationDialog"></ft-confirmation-dialog>
 
     </template>
 
@@ -141,12 +149,45 @@ An element that displays a list of FileThis connection resources
                     type: Array,
                     notify: true,
                     value: []
+                },
+
+                /** Show a button that lets users delete the selected connection. */
+                showDeleteButton:
+                {
+                    type: Boolean,
+                    value: true
                 }
+            },
+
+            observers:[
+                '_connectionsChanged(connections.splices)'
+            ],
+
+            // DELETE
+            _connectionsChanged: function(changeRecord)
+            {
+                if (!changeRecord)
+                    return;
+                var foo = "bar";
             },
 
             _onDeleteButtonClicked: function(event)
             {
-                this.fire('delete', this.selectedConnection);
+                const overrideWarning = event.metaKey;
+                if (overrideWarning)
+                {
+                    this.fire('delete', this.selectedConnection);
+                    return;
+                }
+
+                const prompt = "Are you sure you want to delete the selected connection?";
+                return this.$.confirmationDialog.confirm(prompt, "Delete Connection")
+                    .then(function(choice)
+                    {
+                        if (choice === "cancel")
+                            return;
+                        this.fire('delete', this.selectedConnection);
+                    }.bind(this))
             }
 
         });

@@ -8,12 +8,19 @@
         "paper-item": "PolymerElements/paper-item#^1.2.1",
         "ft-connection-details": "filethis/ft-connection-details#^0.0.4",
         "ft-connection-list": "filethis/ft-connection-list#^0.0.4",
-        "ft-connection-list-item": "filethis/ft-connection-list-item#^0.0.5"
+        "ft-connection-list-item": "filethis/ft-connection-list-item#^0.0.5",
+        "ft-icon-button": "filethis/icon-button#^0.0.1",
+        "ft-confirmation-dialog": "filethis/ft-confirmation-dialog#^0.0.1",
+        "paper-spinner": "PolymerElements/paper-spinner#^2.0.0",
+        "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.0"
     },
     "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
         "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24"
+    },
+    "resolutions": {
+        "webcomponentsjs": "^0.7.24"
     }
 }
