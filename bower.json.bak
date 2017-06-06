@@ -5,7 +5,7 @@
     "dependencies": {
         "polymer": "Polymer/polymer#^1.9.0",
         "iron-label": "PolymerElements/iron-label#^1.0.2",
-        "paper-item": "PolymerElements/paper-item#^1.2.1",
+        "paper-item": "PolymerElements/paper-item#^2.0.0",
         "ft-connection-details": "filethis/ft-connection-details#^0.0.5",
         "ft-connection-list": "filethis/ft-connection-list#^0.0.5",
         "ft-connection-list-item": "filethis/ft-connection-list-item#^0.0.6",
@@ -15,8 +15,8 @@
         "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.0"
     },
     "devDependencies": {
-        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+        "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
+        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24"
     },
