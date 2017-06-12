@@ -19,6 +19,8 @@ limitations under the License.
 
 <!-- Imports -->
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+
 <link rel="import" href="../../paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="../ft-connections-panel.html">
@@ -32,7 +34,7 @@ An element that displays a list of FileThis connection resources
  -->
 <dom-module id="demo-fixture">
 
-    <style include="iron-flex iron-flex-alignment"></style>
+    <style include="iron-flex iron-flex-alignment iron-positioning"></style>
 
     <style is="custom-style">
 
@@ -53,18 +55,19 @@ An element that displays a list of FileThis connection resources
                 <paper-checkbox checked="{{showDeleteButton}}">
                     Show Delete Button
                 </paper-checkbox>
+
+                <paper-checkbox checked="{{showDetailsPanel}}">
+                    Show Details Panel
+                </paper-checkbox>
             </div>
 
             <!-- Panel -->
-            <div
-                    class="layout vertical center"
-                    style="border:1px solid #DDD;">
-                <ft-connections-panel
-                        id="panel"
-                        show-delete-button="[[showDeleteButton]]"
-                        style="width:100%; border:1px solid #DDD; background-color:white">
-                </ft-connections-panel>
-            </div>
+            <ft-connections-panel
+                    id="panel"
+                    show-delete-button="[[showDeleteButton]]"
+                    show-details-panel="[[showDetailsPanel]]"
+                    style="width:530px; height:450px; border:1px solid #DDD; background-color:white">
+            </ft-connections-panel>
 
         </div>
 
@@ -82,6 +85,11 @@ An element that displays a list of FileThis connection resources
                 {
                     type: Boolean,
                     value: true
+                },
+                showDetailsPanel:
+                {
+                    type: Boolean,
+                    value: false
                 }
             },
 
