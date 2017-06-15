@@ -52,17 +52,20 @@ An element that displays a list of FileThis connection resources
 
             <!-- List panel -->
             <div class="layout vertical"
-                 style="height:100%; border-right:1px solid #DDD;">
+                 style="height:100%; border-right:1px solid #DDD; ">
 
                 <!-- Header -->
                 <div
                         id="header"
                         class="layout horizontal center"
-                        style="height:60px; padding-left:10px; padding-right:10px; border-bottom:1px solid #DDD;">
+                        hidden$="[[!_showHeader]]"
+                        style="height:60px; padding-left:16px; padding-right:10px; border-bottom:1px solid #DDD; ">
 
                     <!-- Title -->
-                    <iron-label style="font-family:Arial;font-size:14pt">
-                        My Connections
+                    <iron-label
+                            hidden$="[[!showTitle]]"
+                            style="font-family:Arial; font-size:14pt; ">
+                        [[title]]
                     </iron-label>
 
                     <div class="flex"></div>
@@ -82,7 +85,7 @@ An element that displays a list of FileThis connection resources
                 <!-- List -->
                 <div
                         id="connectionListScroller"
-                        style="overflow:auto;">
+                        style="overflow:auto; ">
                     <ft-connection-list
                         id="connectionList"
                         connections="[[connections]]"
@@ -168,11 +171,33 @@ An element that displays a list of FileThis connection resources
                     value: []
                 },
 
+                _showHeader:
+                {
+                    type: Boolean,
+                    value: true
+                },
+
+                /** Show a title string. */
+                showTitle:
+                {
+                    type: Boolean,
+                    value: true,
+                    observer: "_showButtonChanged"
+                },
+
+                /** Title to display when "showTitle" is true. */
+                title:
+                {
+                    type: String,
+                    value: "Connections"
+                },
+
                 /** Show a button that lets users delete the selected connection. */
                 showDeleteButton:
                 {
                     type: Boolean,
-                    value: true
+                    value: true,
+                    observer: "_showButtonChanged"
                 },
 
                 /** Show a details panel to the right of the main list when a connection is selected. */
@@ -203,6 +228,21 @@ An element that displays a list of FileThis connection resources
             _updateShowDetails: function()
             {
                 this._showDetailsPanel = !!this.selectedConnection && this.showDetailsPanel;
+            },
+
+            _showButtonChanged: function(to, from)
+            {
+                this._showHeader = this._canShowHeader();
+                this.notifyResize();
+            },
+
+            _canShowHeader: function()
+            {
+                if (this.showTitle)
+                    return true;
+                if (this.showDeleteButton)
+                    return true;
+                return false;
             },
 
             _onDeleteButtonClicked: function(event)
