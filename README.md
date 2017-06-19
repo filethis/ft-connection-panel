@@ -1,6 +1,6 @@
-[_Demo and API docs_](https://filethis.github.io/ft-connections-panel/components/ft-connections-panel/)
+[_Demo and API docs_](https://filethis.github.io/ft-connection-panel/components/ft-connection-panel/)
 
-### \<ft-connections-panel\>
+### \<ft-connection-panel\>
 
 -----------------------------------------------------------
 

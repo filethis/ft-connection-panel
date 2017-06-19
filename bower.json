@@ -1,7 +1,7 @@
 {
-    "name": "ft-connections-panel",
+    "name": "ft-connection-panel",
     "description": "An element that displays a list of FileThis connection resources",
-    "main": "ft-connections-panel.html",
+    "main": "ft-connection-panel.html",
     "dependencies": {
         "polymer": "Polymer/polymer#^1.9.1",
         "iron-label": "PolymerElements/iron-label#^2.0.0",

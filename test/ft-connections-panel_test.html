@@ -21,27 +21,27 @@ limitations under the License.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>ft-connections-panel Test</title>
+    <title>ft-connection-panel Test</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
-    <link rel="import" href="../ft-connections-panel.html">
+    <link rel="import" href="../ft-connection-panel.html">
 </head>
 <body>
 <test-fixture id="basic">
     <template>
-        <ft-connections-panel></ft-connections-panel>
+        <ft-connection-panel></ft-connection-panel>
     </template>
 </test-fixture>
 
 <script>
-    suite('ft-connections-panel', function()
+    suite('ft-connection-panel', function()
     {
         test('instantiating the element works', function()
         {
             var element = fixture('basic');
-            assert.equal(element.is, 'ft-connections-panel');
+            assert.equal(element.is, 'ft-connection-panel');
         });
     });
 </script>
