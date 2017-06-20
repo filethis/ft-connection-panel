@@ -22,7 +22,7 @@ limitations under the License.
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
 <link rel="import" href="../ft-connection-details/ft-connection-details.html">
-<link rel="import" href="../ft-icon-button/ft-icon-button.html">
+<link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 <link rel="import" href="../ft-scrolling-behavior/ft-scrolling-behavior.html">
 
@@ -71,14 +71,14 @@ An element that displays a list of FileThis connection resources
                     <div class="flex"></div>
 
                     <!-- Delete button -->
-                    <ft-icon-button
+                    <ft-labeled-icon-button
                             id="deleteButton"
                             icon="delete"
                             label="Delete"
                             disabled="[[!selectedConnection]]"
                             hidden$="[[!showDeleteButton]]"
                             on-click="_onDeleteButtonClicked">
-                    </ft-icon-button>
+                    </ft-labeled-icon-button>
 
                 </div>
 
