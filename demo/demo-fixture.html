@@ -24,6 +24,8 @@ limitations under the License.
 <link rel="import" href="../../iron-input/iron-input.html">
 <link rel="import" href="../../paper-checkbox/paper-checkbox.html">
 
+<link rel="import" href="../../ft-labeled-icon-button/ft-labeled-icon-button.html">
+
 <link rel="import" href="../ft-connection-panel.html">
 
 
@@ -35,9 +37,9 @@ An element that displays a list of FileThis connection resources
  -->
 <dom-module id="demo-fixture">
 
-    <style include="iron-flex iron-flex-alignment iron-positioning"></style>
-
     <template>
+
+        <style include="iron-flex iron-flex-alignment iron-positioning"></style>
 
         <style>
             :host {
@@ -157,9 +159,9 @@ An element that displays a list of FileThis connection resources
                         xmlHttpRequest.status === 200)
                     {
                         var sources = JSON.parse(xmlHttpRequest.responseText);
-                        panel.sources = sources;
+                        this.$.panel.sources = sources;
 
-                        this._loadFakeConnections()
+                        this._loadFakeConnections();
                     }
                 }.bind(this);
                 xmlHttpRequest.send();
@@ -178,11 +180,11 @@ An element that displays a list of FileThis connection resources
                         xmlHttpRequest.status === 200)
                     {
                         var connections = JSON.parse(xmlHttpRequest.responseText);
-                        panel.connections = connections;
+                        this.$.panel.connections = connections;
                     }
-                };
+                }.bind(this);
                 xmlHttpRequest.send();
-            }.bind(this)
+            }
 
         });
 
