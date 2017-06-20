@@ -1,6 +1,6 @@
 # Project configuration
 NAME=ft-connection-panel
-VERSION=0.0.3
+VERSION=0.0.7
 LOCAL_PORT=3543
 GITHUB_USER=filethis
 BOWER_NAMESPACE=FileThis
