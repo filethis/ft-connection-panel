@@ -222,7 +222,7 @@ An element that displays a list of FileThis connection resources
 
             _calculateScrollerHeight: function(scroller)
             {
-                const headerHeight = this.$.header.offsetHeight;
+                var headerHeight = this.$.header.offsetHeight;
                 return this.clientHeight - headerHeight;
             },
 
@@ -248,14 +248,14 @@ An element that displays a list of FileThis connection resources
 
             _onDeleteButtonClicked: function(event)
             {
-                const overrideWarning = event.metaKey;
+                var overrideWarning = event.metaKey;
                 if (overrideWarning)
                 {
                     this.fire('delete', this.selectedConnection);
                     return;
                 }
 
-                const prompt = "Are you sure you want to delete the selected connection?";
+                var prompt = "Are you sure you want to delete the selected connection?";
                 return this.$.confirmationDialog.confirm(prompt, "Delete Connection")
                     .then(function(choice)
                     {
