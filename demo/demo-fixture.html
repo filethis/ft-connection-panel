@@ -18,15 +18,10 @@ limitations under the License.
 <!-- ft-connection-panel element demo -->
 
 <!-- Imports -->
-<link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
-
-<link rel="import" href="../../iron-input/iron-input.html">
-<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
-
-<link rel="import" href="../../ft-labeled-icon-button/ft-labeled-icon-button.html">
-
+<link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../ft-connection-panel.html">
+<link rel="import" href="./ft-connection-panel-config.html">
 
 
 <!--
@@ -47,55 +42,15 @@ An element that displays a list of FileThis connection resources
             }
         </style>
 
-        <style is="custom-style">
-
-            paper-checkbox {
-                width:165px;
-                margin-bottom:16px;
-            }
-
-        </style>
-
         <div class="layout horizontal center">
 
             <!-- Settings -->
-            <div class="layout vertical center" style="width:300px">
-
-                <paper-checkbox checked="{{showTitle}}">
-                    Show Title
-                </paper-checkbox>
-
-                <div class="layout horizontal">
-
-                    <!-- Label -->
-                    <div>
-                        Title:
-                    </div>
-
-                    <!-- Field -->
-                    <iron-input
-                           id="titleField"
-                           bind-value="{{title}}"
-                           style="font-family:Arial;
-                                    font-size:12px;
-                                    width:100px; height:28px;
-                                    padding-left:6px; padding-right:6px;
-                                    color:#343434;">
-                        <input value="{{value::input}}">
-                    </iron-input>
-
-                </div>
-
-                <div style="height:20px"></div>
-
-                <paper-checkbox checked="{{showDeleteButton}}">
-                    Show Delete Button
-                </paper-checkbox>
-
-                <!--<paper-checkbox checked="{{showDetailsPanel}}">-->
-                    <!--Show Details Panel-->
-                <!--</paper-checkbox>-->
-            </div>
+            <ft-connection-panel-config
+                    show-title="{{showTitle}}"
+                    title="{{title}}"
+                    show-delete-button="{{showDeleteButton}}"
+                    show-details-panel="{{showDetailsPanel}}">
+            </ft-connection-panel-config>
 
             <!-- Panel -->
             <ft-connection-panel
