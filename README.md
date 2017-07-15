@@ -2,7 +2,7 @@
 
 ### \<ft-connection-panel\>
 
-This element displays a list of FileThis [connection resources](https://filethis.com/developers/doc/index.html#/connection). Above the list is a header area that can display a title and an optional _delete_ button. The display of all header elements is configurable.
+This element displays a list of FileThis [connection resources](https://filethis.com/developers/doc/index.html#/connection). Above the list is a header area that can display a title and a _delete_ button. Which header elements are displayed is configurable.
 
 By default, it uses [ft-connection-list](https://github.com/filethis/ft-connection-list) to display the connections.
 
