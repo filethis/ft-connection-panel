@@ -16,10 +16,9 @@ limitations under the License.
 
 
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
-<link rel="import" href="../ft-connection-details/ft-connection-details.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
+<link rel="import" href="./ft-fucked-connection-list.html">
 <link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
-<link rel="import" href="../ft-scrolling-behavior/ft-scrolling-behavior.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
@@ -42,79 +41,102 @@ This element displays a list of FileThis connection resources. Above the list is
         <style>
             :host {
                 display:block;
+                width:100%;
+                height:100%;
             }
         </style>
 
-        <!-- List panel and details panel -->
-        <div
-                class="layout horizontal"
-                style="width:100%; height:100%; ">
+        <!-- List panel -->
+        <div class="layout vertical"
+             style="width:100%; height:100%; ">
 
-            <!-- List panel -->
-            <div class="layout vertical"
-                 style="width:100%; height:100%; ">
+            <!-- Header -->
+            <!--<div-->
+                    <!--id="header"-->
+                    <!--class="layout horizontal center"-->
+                    <!--hidden$="[[!_showHeader]]"-->
+                    <!--style="height:60px; min-height:60px; padding-left:16px; padding-right:10px; border-bottom:1px solid #DDD; ">-->
 
-                <!-- Header -->
-                <div
-                        id="header"
-                        class="layout horizontal center"
-                        hidden$="[[!_showHeader]]"
-                        style="height:60px; min-height:60px; padding-left:16px; padding-right:10px; border-bottom:1px solid #DDD; ">
+                <!--&lt;!&ndash; Title &ndash;&gt;-->
+                <!--<iron-label-->
+                        <!--hidden$="[[!showTitle]]"-->
+                        <!--style="font-family:Arial; font-size:14pt; ">-->
+                    <!--[[title]]-->
+                <!--</iron-label>-->
 
-                    <!-- Title -->
-                    <iron-label
-                            hidden$="[[!showTitle]]"
-                            style="font-family:Arial; font-size:14pt; ">
-                        [[title]]
-                    </iron-label>
+                <!--<div class="flex"></div>-->
 
-                    <div class="flex"></div>
+                <!--&lt;!&ndash; Delete button &ndash;&gt;-->
+                <!--<ft-labeled-icon-button-->
+                        <!--id="deleteButton"-->
+                        <!--icon="delete"-->
+                        <!--label="Delete"-->
+                        <!--disabled="[[!selectedConnection]]"-->
+                        <!--hidden$="[[!showDeleteButton]]"-->
+                        <!--on-tap="_onDeleteButtonClicked">-->
+                <!--</ft-labeled-icon-button>-->
 
-                    <!-- Delete button -->
-                    <ft-labeled-icon-button
-                            id="deleteButton"
-                            icon="delete"
-                            label="Delete"
-                            disabled="[[!selectedConnection]]"
-                            hidden$="[[!showDeleteButton]]"
-                            on-tap="_onDeleteButtonClicked">
-                    </ft-labeled-icon-button>
+            <!--</div>-->
+            <div
+                    id="header"
+                    style="height:60px; background-color:indianred; ">
+                Header
+            </div>
 
-                </div>
-
-                <!-- List -->
-                <ft-connection-list
+            <!-- List -->
+            <!--<ft-connection-list-->
+                    <!--id="connectionList"-->
+                    <!--class="flex"-->
+                    <!--connections="[[connections]]"-->
+                    <!--selected-connection="{{selectedConnection}}">-->
+            <!--</ft-connection-list>-->
+            <ft-fucked-connection-list
                     id="connectionList"
-                    class="flex"
-                    connections="[[connections]]"
-                    selected-connection="{{selectedConnection}}">
-                </ft-connection-list>
+                    class="flex">
+            </ft-fucked-connection-list>
+            <!--<div-->
+                    <!--id="connectionList"-->
+                    <!--class="flex scroll"-->
+                    <!--style="background-color:indianred; ">-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+                <!--<div-->
+                    <!--style="height:100px; background-color:dodgerblue; ">-->
+                    <!--Thing-->
+                <!--</div>-->
+            <!--</div>-->
 
-            </div>
-
-            <!-- Details panel -->
-            <div class="layout vertical"
-                 style="width:450px; height:100%;"
-                 hidden$="{{!showDetailsPanel}}">
-
-                <!-- Title -->
-                <div class="layout horizontal center"
-                     style="width:100%; height:60px; padding-left:10px;">
-
-                    <!-- Title -->
-                    <iron-label id="connectionName" style="font-family:Arial;font-size:14pt;">[[selectedConnection.name]]</iron-label>
-                </div>
-                <div style="width:100%; height:1px; border-top:1px solid #DDD;"></div>
-
-                <!-- Details -->
-                <ft-connection-details
-                        id="connectionDetails"
-                        sources="[[sources]]"
-                        connection="[[selectedConnection]]"
-                        style="width:100%; height:100%;">
-                </ft-connection-details>
-            </div>
-        </div>
+        <!--</div>-->
 
         <!-- Confirmation dialog -->
         <ft-confirmation-dialog id="confirmationDialog"></ft-confirmation-dialog>
@@ -127,12 +149,7 @@ This element displays a list of FileThis connection resources. Above the list is
             is: 'ft-connection-panel',
 
             behaviors: [
-                Polymer.IronResizableBehavior,
-                FileThis.ScrollingBehavior
-            ],
-
-            observers: [
-                "_updateShowDetails(selectedConnection, showDetailsPanel)"
+                Polymer.IronResizableBehavior
             ],
 
             /**
@@ -202,31 +219,7 @@ This element displays a list of FileThis connection resources. Above the list is
                     type: Object,
                     value: true,
                     observer: "_showButtonChanged"
-                },
-
-                /**
-                 * Show a details panel to the right of the main list when a connection is selected.
-                 *
-                 * Note that you can provide the strings "true" and "false" as attribute values.
-                 *
-                 * @type {boolean}
-                 */
-                showDetailsPanel:
-                {
-                    type: Object,
-                    value: false
                 }
-            },
-
-            _calculateScrollerHeight: function(scroller)
-            {
-                var headerHeight = this.$.header.offsetHeight;
-                return this.clientHeight - headerHeight;
-            },
-
-            _updateShowDetails: function()
-            {
-                this._showDetailsPanel = !!this.selectedConnection && this.showDetailsPanel;
             },
 
             _showButtonChanged: function(to, from)
