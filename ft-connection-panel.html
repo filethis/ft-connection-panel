@@ -17,7 +17,6 @@ limitations under the License.
 
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
-<link rel="import" href="./ft-fucked-connection-list.html">
 <link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
@@ -49,38 +48,38 @@ This element displays a list of FileThis connection resources. Above the list is
         <!-- Header -->
         <div
                 id="header"
-                style="height:60px; background-color:indianred; ">
-            Header
+                class="layout horizontal center"
+                hidden$="[[!_showHeader]]"
+                style="height:60px; min-height:60px; padding-left:16px; padding-right:10px; border-bottom:1px solid #DDD; ">
+
+            <!-- Title -->
+            <iron-label
+                    hidden$="[[!showTitle]]"
+                    style="font-family:Arial; font-size:14pt; ">
+                [[title]]
+            </iron-label>
+
+            <div class="flex"></div>
+
+            <!-- Delete button -->
+            <ft-labeled-icon-button
+                    id="deleteButton"
+                    icon="delete"
+                    label="Delete"
+                    disabled="[[!selectedConnection]]"
+                    hidden$="[[!showDeleteButton]]"
+                    on-tap="_onDeleteButtonClicked">
+            </ft-labeled-icon-button>
+
         </div>
 
         <!-- List -->
-        <!--<ft-fucked-connection-list-->
-                <!--id="connectionList"-->
-                <!--class="flex">-->
-        <!--</ft-fucked-connection-list>-->
         <ft-connection-list
                 id="connectionList"
                 class="flex"
                 connections="[[connections]]"
                 selected-connection="{{selectedConnection}}">
         </ft-connection-list>
-        <!--<iron-list selection-enabled-->
-                   <!--id="connectionList"-->
-                   <!--style="background-color:dodgerblue; "-->
-                   <!--class="flex"-->
-                   <!--items="[[connections]]"-->
-                   <!--selected-item="{{selectedConnection}}"-->
-                   <!--as="connection">-->
-
-            <!--&lt;!&ndash; Connection item template &ndash;&gt;-->
-            <!--<template>-->
-                <!--<ft-connection-list-item-->
-                        <!--style="border-bottom:1px solid #DDD; "-->
-                        <!--connection="[[connection]]"-->
-                        <!--selected$="[[selected]]">-->
-                <!--</ft-connection-list-item>-->
-            <!--</template>-->
-        <!--</iron-list>-->
 
         <!-- Confirmation dialog -->
         <ft-confirmation-dialog id="confirmationDialog"></ft-confirmation-dialog>
