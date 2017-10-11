@@ -45,6 +45,7 @@ An element that displays a list of FileThis connection resources
 
         <ft-element-demo
                 name="ft-connection-panel"
+                code="[[code]]"
                 style="width:100%; height:100%; ">
 
             <!-- Settings -->
@@ -59,19 +60,18 @@ An element that displays a list of FileThis connection resources
 
             <!-- Panel -->
             <ft-connection-panel
-                    slot="element"
+                    slot="instance"
                     id="panel"
                     style="width:100%; height:100%; "
                     show-title="[[showTitle]]"
                     title="[[title]]"
                     show-delete-button="[[showDeleteButton]]"
                     show-details-panel="[[showDetailsPanel]]"
-                    style="background-color:white">
+                    style="background-color:white"
+                    code="{{code}}">
             </ft-connection-panel>
 
         </ft-element-demo>
-
-        </div>
 
     </template>
 
@@ -102,6 +102,11 @@ An element that displays a list of FileThis connection resources
                 {
                     type: Boolean,
                     value: false
+                },
+                code:
+                {
+                    type: String,
+                    value: ""
                 }
             },
 
