@@ -213,15 +213,15 @@ This element displays a list of FileThis connection resources. Above the list is
 
             _onConfigPropertyChanged: function(to, from)
             {
-                this._invalidChangedDebouncer = Polymer.Debouncer.debounce
+                this._configPropertyChangedDebouncer = Polymer.Debouncer.debounce
                 (
                     this._configPropertyChangedDebouncer,
                     Polymer.Async.timeOut.after(60),
-                    this.__onConfigPropertyChangedDebounced.bind(this)
+                    this._onConfigPropertyChangedDebounced.bind(this)
                 );
             },
 
-            __onConfigPropertyChangedDebounced: function()
+            _onConfigPropertyChangedDebounced: function()
             {
                 this._showButtonChanged();
 
