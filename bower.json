@@ -7,7 +7,7 @@
     "ft-connection-details": "filethis/ft-connection-details#^0.0.20",
     "ft-connection-list": "filethis/ft-connection-list#^0.0.19",
     "ft-connection-list-item": "filethis/ft-connection-list-item#^0.0.22",
-    "ft-element-demo": "filethis/ft-element-demo#^0.0.3",
+    "ft-element-demo": "filethis/ft-element-demo#^0.0.4",
     "ft-labeled-icon-button": "filethis/ft-labeled-icon-button#^0.0.12",
     "ft-scrolling-behavior": "filethis/ft-scrolling-behavior#^0.0.10",
     "iron-input": "PolymerElements/iron-input#1 - 2",
