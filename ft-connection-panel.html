@@ -198,7 +198,7 @@ This element displays a list of FileThis connection resources. Above the list is
                 var overrideWarning = event.metaKey;
                 if (overrideWarning)
                 {
-                    this.fire('delete', this.selectedConnection);
+                    this.fire('delete-connection-command', this.selectedConnection);
                     return;
                 }
 
@@ -208,7 +208,7 @@ This element displays a list of FileThis connection resources. Above the list is
                     {
                         if (choice === "cancel")
                             return;
-                        this.fire('delete', this.selectedConnection);
+                        this.fire('delete-connection-command', this.selectedConnection);
                     }.bind(this))
             },
 
