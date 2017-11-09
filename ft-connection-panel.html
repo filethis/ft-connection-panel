@@ -237,7 +237,30 @@ This element displays a list of FileThis connection resources. Above the list is
                 code = code.replace(/{{title}}/g, this.title);
                 code = code.replace(/{{showDeleteButton}}/g, this.showDeleteButton);
                 this.code = code;
-            }
+            },
+
+            generateSettings: function()
+            {
+                // NOTE: Must keep the default values here up to date with properties
+                var config = {};
+                if (this.showTitle !== true)
+                    config.showTitle = this.showTitle;
+                if (this.title !== "Connections")
+                    config.title = this.title;
+                if (this.showDeleteButton !== true)
+                    config.showDeleteButton = this.showDeleteButton;
+                return config;
+            },
+
+            applySettings: function(settings)
+            {
+                if (settings.showTitle)
+                    this.showTitle = settings.showTitle;
+                if (settings.title)
+                    this.title = settings.title;
+                if (settings.showDeleteButton)
+                    this.showDeleteButton = settings.showDeleteButton;
+            },
 
         });
     </script>

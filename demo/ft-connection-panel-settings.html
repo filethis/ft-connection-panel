@@ -28,7 +28,7 @@ This element defines a source grid example that allows experimentation with conf
 
 @demo
  -->
-<dom-module id="ft-connection-panel-config">
+<dom-module id="ft-connection-panel-settings">
 
     <template>
 
@@ -38,6 +38,8 @@ This element defines a source grid example that allows experimentation with conf
             :host {
                 display:block;
                 overflow:hidden;
+                @apply --layout-vertical;
+                @apply --ft-connection-panel-settings;
             }
         </style>
 
@@ -50,42 +52,41 @@ This element defines a source grid example that allows experimentation with conf
         </style>
 
         <!-- Settings -->
-        <div class="layout vertical center" style="width:300px">
+        <paper-checkbox checked="{{showTitle}}">
+            Show Title
+        </paper-checkbox>
 
-            <paper-checkbox checked="{{showTitle}}">
-                Show Title
-            </paper-checkbox>
+        <div class="layout horizontal">
 
-            <div class="layout horizontal">
-
-                <!-- Label -->
-                <div>
-                    Title:
-                </div>
-
-                <!-- Field -->
-                <iron-input
-                       id="titleField"
-                       bind-value="{{title}}"
-                       style="font-family:Arial;
-                                font-size:12px;
-                                width:100px; height:28px;
-                                padding-left:6px; padding-right:6px;
-                                color:#343434;">
-                    <input value="{{value::input}}">
-                </iron-input>
-
+            <!-- Label -->
+            <div>
+                Title:
             </div>
 
-            <div style="height:20px"></div>
+            <!-- Field -->
+            <iron-input
+                   id="titleField"
+                   bind-value="{{title}}"
+                   style="font-family:Arial;
+                            font-size:12px;
+                            width:100px; height:28px;
+                            padding-left:6px; padding-right:6px;
+                            color:#343434;">
+                <input value="{{value::input}}">
+            </iron-input>
 
-            <paper-checkbox checked="{{showDeleteButton}}">
-                Show Delete Button
-            </paper-checkbox>
+        </div>
 
-            <!--<paper-checkbox checked="{{showDetailsPanel}}">-->
-                <!--Show Details Panel-->
-            <!--</paper-checkbox>-->
+        <div style="height:20px"></div>
+
+        <paper-checkbox checked="{{showDeleteButton}}">
+            Show Delete Button
+        </paper-checkbox>
+
+        <!--<paper-checkbox checked="{{showDetailsPanel}}">-->
+            <!--Show Details Panel-->
+        <!--</paper-checkbox>-->
+
         </div>
 
     </template>
@@ -94,7 +95,7 @@ This element defines a source grid example that allows experimentation with conf
 
         Polymer
         ({
-            is: 'ft-connection-panel-config',
+            is: 'ft-connection-panel-settings',
 
             properties:
             {

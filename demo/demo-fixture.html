@@ -22,7 +22,7 @@ limitations under the License.
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../ft-connection-panel.html">
-<link rel="import" href="./ft-connection-panel-config.html">
+<link rel="import" href="./ft-connection-panel-settings.html">
 
 
 <!--
@@ -51,14 +51,14 @@ An element that displays a list of FileThis connection resources
                 style="width:100%; height:100%; ">
 
             <!-- Settings -->
-            <ft-connection-panel-config
+            <ft-connection-panel-settings
                     slot="config"
                     style="height:100%; padding:20px; "
                     show-title="{{showTitle}}"
                     title="{{title}}"
                     show-delete-button="{{showDeleteButton}}"
                     show-details-panel="{{showDetailsPanel}}">
-            </ft-connection-panel-config>
+            </ft-connection-panel-settings>
 
             <!-- Panel -->
             <ft-connection-panel
