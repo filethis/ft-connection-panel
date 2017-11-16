@@ -12,6 +12,7 @@
     "ft-http-behavior": "filethis/ft-http-behavior#^0.0.16",
     "ft-labeled-icon-button": "filethis/ft-labeled-icon-button#^0.0.15",
     "ft-scrolling-behavior": "filethis/ft-scrolling-behavior#^0.0.13",
+    "ft-settings": "filethis/ft-settings#^0.0.1",
     "iron-input": "PolymerElements/iron-input#1 - 2",
     "iron-label": "PolymerElements/iron-label#1 - 2",
     "paper-checkbox": "PolymerElements/paper-checkbox#1 - 2",

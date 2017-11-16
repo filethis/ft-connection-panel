@@ -18,6 +18,8 @@ limitations under the License.
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
 <link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
+<link rel="import" href="../ft-settings/ft-settings-applier-behavior.html">
+<link rel="import" href="../ft-settings/ft-settings-publisher-behavior.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
 <link rel="import" href="../iron-list/iron-list.html">
@@ -94,12 +96,14 @@ This element displays a list of FileThis connection resources. Above the list is
             is: 'ft-connection-panel',
 
             behaviors: [
-                Polymer.IronResizableBehavior
+                Polymer.IronResizableBehavior,
+                FileThis.SettingsPublisherBehavior,
+                FileThis.SettingsApplierBehavior,
             ],
 
             observers:
             [
-                "_onConfigPropertyChanged(title, showTitle, showDeleteButton)"
+                "_onSettingsPropertyChanged(title, showTitle, showDeleteButton)"
             ],
 
             /**
@@ -178,6 +182,12 @@ This element displays a list of FileThis connection resources. Above the list is
 
             },
 
+            ready: function()
+            {
+                var propertyNames = [ "showTitle", "title", "showDeleteButton" ];
+                this.settingsPublish("ft-connection-panel", propertyNames);
+            },
+
             _showButtonChanged: function(to, from)
             {
                 this._showHeader = this._canShowHeader();
@@ -212,54 +222,32 @@ This element displays a list of FileThis connection resources. Above the list is
                     }.bind(this))
             },
 
-            _onConfigPropertyChanged: function(to, from)
-            {
-                this._configPropertyChangedDebouncer = Polymer.Debouncer.debounce
-                (
-                    this._configPropertyChangedDebouncer,
-                    Polymer.Async.timeOut.after(60),
-                    this._onConfigPropertyChangedDebounced.bind(this)
-                );
-            },
-
-            _onConfigPropertyChangedDebounced: function()
+            _onSettingsPropertyChanged: function()
             {
                 this._showButtonChanged();
 
-                var code =
-                    "<{{name}}\n" +
-                    "    showTitle='{{showTitle}}'\n" +
-                    "    title='{{title}}'\n" +
-                    "    showDeleteButton='{{showDeleteButton}}'>\n" +
-                    "</{{name}}>";
-                code = code.replace(/{{name}}/g, this.localName);
-                code = code.replace(/{{showTitle}}/g, this.showTitle);
-                code = code.replace(/{{title}}/g, this.title);
-                code = code.replace(/{{showDeleteButton}}/g, this.showDeleteButton);
-                this.code = code;
+                this.updateSettings();
             },
 
-            generateSettings: function()
+            _old: function()
             {
-                // NOTE: Must keep the default values here up to date with properties
-                var config = {};
-                if (this.showTitle !== true)
-                    config.showTitle = this.showTitle;
-                if (this.title !== "Connections")
-                    config.title = this.title;
-                if (this.showDeleteButton !== true)
-                    config.showDeleteButton = this.showDeleteButton;
-                return config;
-            },
+                this._showButtonChanged();
 
-            applySettings: function(settings)
-            {
-                if (settings.showTitle)
-                    this.showTitle = settings.showTitle;
-                if (settings.title)
-                    this.title = settings.title;
-                if (settings.showDeleteButton)
-                    this.showDeleteButton = settings.showDeleteButton;
+                // Update the settings
+                this.updateSettings();
+
+                // Update the code
+//                var code =
+//                    "<{{name}}\n" +
+//                    "    show-title='{{showTitle}}'\n" +
+//                    "    title='{{title}}'\n" +
+//                    "    show-delete-button='{{showDeleteButton}}'>\n" +
+//                    "</{{name}}>";
+//                code = code.replace(/{{name}}/g, this.localName);
+//                code = code.replace(/{{showTitle}}/g, this.showTitle);
+//                code = code.replace(/{{title}}/g, this.title);
+//                code = code.replace(/{{showDeleteButton}}/g, this.showDeleteButton);
+//                this.code = code;
             },
 
         });
