@@ -16,11 +16,12 @@ limitations under the License.
 
 
 <!-- Imports -->
-<link rel="import" href="../../ft-settings/ft-settings-publisher-behavior.html">
+<link rel="import" href="../../ft-global-variable/ft-global-variable.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../iron-input/iron-input.html">
 <link rel="import" href="../../paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../ft-connection-panel-settings-behavior.html">
 
 
 <!--
@@ -53,30 +54,22 @@ This element defines a source grid example that allows experimentation with conf
         </style>
 
         <!-- Settings -->
-        <paper-checkbox checked="{{showTitle}}">
-            Show Title
+        <ft-global-variable name="ft-connection-panel-show-heading" value="{{showHeading}}"></ft-global-variable>
+        <ft-global-variable name="ft-connection-panel-heading" value="{{heading}}"></ft-global-variable>
+        <ft-global-variable name="ft-connection-panel-show-delete-button" value="{{showDeleteButton}}"></ft-global-variable>
+
+        <!-- Settings -->
+        <paper-checkbox checked="{{showHeading}}">
+            Show Heading
         </paper-checkbox>
 
-        <div class="layout horizontal">
-
-            <!-- Label -->
-            <div>
-                Title:
-            </div>
-
-            <!-- Field -->
-            <iron-input
-                   id="titleField"
-                   bind-value="{{title}}"
-                   style="font-family:Arial;
-                            font-size:12px;
-                            width:100px; height:28px;
-                            padding-left:6px; padding-right:6px;
-                            color:#343434;">
-                <input value="{{value::input}}">
-            </iron-input>
-
-        </div>
+        <paper-input
+            id="headingField"
+            value="{{heading}}"
+            label="Heading:"
+            style="width:200px;"
+        >
+        </paper-input>
 
         <div style="height:20px"></div>
 
@@ -99,53 +92,8 @@ This element defines a source grid example that allows experimentation with conf
             is: 'ft-connection-panel-settings-editor',
 
             behaviors: [
-                FileThis.SettingsPublisherBehavior
+                FileThis.ConnectionPanelSettingsBehavior,
             ],
-
-            observers:
-            [
-                "_onSettingsPropertyChanged(title, showTitle, showDeleteButton)"
-            ],
-
-            properties:
-            {
-                showTitle:
-                {
-                    type: Boolean,
-                    notify: true,
-                    value: true
-                },
-                title:
-                {
-
-                    type: String,
-                    notify: true,
-                    value: "Connections"
-                },
-                showDeleteButton:
-                {
-                    type: Boolean,
-                    notify: true,
-                    value: true
-                },
-                showDetailsPanel:
-                {
-                    type: Boolean,
-                    notify: true,
-                    value: false
-                }
-            },
-
-            ready: function()
-            {
-                var propertyNames = [ "showTitle", "title", "showDeleteButton", "showDetailsPanel" ];
-                this.settingsPublish("ft-connection-panel-settings-editor", propertyNames);
-            },
-
-            _onSettingsPropertyChanged: function()
-            {
-                this.updateSettings();
-            },
 
         });
 
