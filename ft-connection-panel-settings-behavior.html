@@ -73,28 +73,46 @@ limitations under the License.
             this.fire("internal-settings-changed");
         },
 
+        generateImports: function()
+        {
+            if (!this._hasSettings())
+                return "";
+
+            var imports = "<link rel=\"import\" href=\"../bower_components/ft-connection-panel/ft-connection-panel-settings.html\">\n";
+            return imports;
+        },
+
         generateSettings: function()
         {
+            if (!this._hasSettings())
+                return "";
+
             var attributes = "";
             if (this.showHeading !== true)
-                attributes += "\n    showHeading=false";
+                attributes += "\n    show-heading=false";
             if (this.heading !== "Connections")
                 attributes += "\n    heading='" + this.heading + "'";
             if (this.showDeleteButton !== true)
-                attributes += "\n    showDeleteButton=false";
-
-            if (attributes.length === 0)
-                return "";
+                attributes += "\n    show-delete-button=false";
 
             var settings = "";
-
-            settings += "\n<link rel=\"import\" href=\"../bower_components/ft-connection-panel/ft-connection-panel-settings.html\">\n";
 
             settings += "\n<ft-connection-panel-settings ";
             settings += attributes;
             settings += ">\n</ft-connection-panel-settings>\n";
 
             return settings;
+        },
+
+        _hasSettings: function()
+        {
+            if (this.showHeading !== true)
+                return true;
+            if (this.heading !== "Connections")
+                return true;
+            if (this.showDeleteButton !== true)
+                return true;
+            return false;
         },
     }
 
