@@ -49,7 +49,6 @@ An element that displays a list of FileThis connection resources
 
         <ft-element-demo
                 name="ft-connection-panel"
-                code="[[code]]"
                 show-config="true"
                 style="width:100%; height:100%; ">
 
@@ -65,7 +64,6 @@ An element that displays a list of FileThis connection resources
                 slot="instance"
                 id="panel"
                 style="width:100%; height:100%; background-color:white; "
-                code="{{code}}"
             >
             </ft-connection-panel>
 
@@ -78,15 +76,6 @@ An element that displays a list of FileThis connection resources
         Polymer
         ({
             is: 'demo-fixture',
-
-            properties:
-            {
-                code:
-                {
-                    type: String,
-                    value: ""
-                }
-            },
 
             ready: function()
             {
