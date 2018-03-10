@@ -42,10 +42,23 @@ This element displays a list of FileThis connection resources. Above the list is
 
         <style>
             :host {
-                display:block;
-                overflow:hidden;
+                display: block;
+                overflow: hidden;
                 @apply --layout-vertical;
                 @apply --ft-connection-panel;
+            }
+            .header {
+                height: 60px;
+                min-height: 60px;
+                padding-left: 16px;
+                padding-right: 10px;
+                border-bottom: 1px solid #DDD;
+                @apply --ft-connection-panel-header;
+            }
+            .heading {
+                font-family: Arial;
+                font-size: 14pt;
+                @apply --ft-connection-panel-heading;
             }
         </style>
 
@@ -56,15 +69,15 @@ This element displays a list of FileThis connection resources. Above the list is
 
         <!-- Header -->
         <div
-                id="header"
-                class="layout horizontal center"
-                hidden$="[[!_showHeader]]"
-                style="height:60px; min-height:60px; padding-left:16px; padding-right:10px; border-bottom:1px solid #DDD; ">
-
+            id="header"
+            class="header layout horizontal center"
+            hidden$="[[!_showHeader]]"
+        >
             <!-- Heading -->
             <iron-label
-                    hidden$="[[!showHeading]]"
-                    style="font-family:Arial; font-size:14pt; ">
+                class="heading"
+                hidden$="[[!showHeading]]"
+            >
                 [[heading]]
             </iron-label>
 
@@ -72,22 +85,23 @@ This element displays a list of FileThis connection resources. Above the list is
 
             <!-- Delete button -->
             <ft-labeled-icon-button
-                    id="deleteButton"
-                    icon="delete"
-                    label="Delete"
-                    disabled="[[!selectedConnection]]"
-                    hidden$="[[!showDeleteButton]]"
-                    on-tap="_onDeleteButtonClicked">
+                id="deleteButton"
+                icon="delete"
+                label="Delete"
+                disabled="[[!selectedConnection]]"
+                hidden$="[[!showDeleteButton]]"
+                on-tap="_onDeleteButtonClicked"
+            >
             </ft-labeled-icon-button>
-
         </div>
 
         <!-- List -->
         <ft-connection-list
-                id="connectionList"
-                class="flex"
-                connections="[[connections]]"
-                selected-connection="{{selectedConnection}}">
+            id="connectionList"
+            class="flex"
+            connections="[[connections]]"
+            selected-connection="{{selectedConnection}}"
+        >
         </ft-connection-list>
 
         <!-- Confirmation dialog -->
