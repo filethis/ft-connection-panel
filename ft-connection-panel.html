@@ -47,7 +47,7 @@ This element displays a list of FileThis connection resources. Above the list is
                 @apply --layout-vertical;
                 @apply --ft-connection-panel;
             }
-            .header {
+            #header {
                 height: 60px;
                 min-height: 60px;
                 padding-left: 16px;
@@ -55,7 +55,7 @@ This element displays a list of FileThis connection resources. Above the list is
                 border-bottom: 1px solid #DDD;
                 @apply --ft-connection-panel-header;
             }
-            .heading {
+            #heading {
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 14pt;
                 @apply --ft-connection-panel-heading;
@@ -70,12 +70,12 @@ This element displays a list of FileThis connection resources. Above the list is
         <!-- Header -->
         <div
             id="header"
-            class="header layout horizontal center"
+            class="layout horizontal center"
             hidden$="[[!_showHeader]]"
         >
             <!-- Heading -->
             <iron-label
-                class="heading"
+                id="heading"
                 hidden$="[[!showHeading]]"
             >
                 [[heading]]
