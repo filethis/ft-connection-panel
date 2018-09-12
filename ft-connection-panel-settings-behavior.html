@@ -52,7 +52,6 @@ limitations under the License.
                 type: String,
                 value: "Connections",
                 notify: true,
-                observer: "_fooo"
             },
 
             /**
@@ -71,14 +70,12 @@ limitations under the License.
 
         },
 
-        _fooo: function(to, from)
+        attached: function()
         {
-            var foo = "bar";
-        },
-
-        ready: function()
-        {
-            this._applySettings();
+            this.async(function()
+            {
+                this._applySettings();
+            });
         },
 
         _applySettings: function()
@@ -106,7 +103,7 @@ limitations under the License.
             if (!this._hasSettings())
                 return "";
 
-            var settings = "\n<ft-connection-panel-settings";
+            var settings = "<ft-connection-panel-settings";
 
             // Keep alphabetized
             if (this.ftConnectionPanelHeading !== "Connections")
@@ -116,7 +113,7 @@ limitations under the License.
             if (this.ftConnectionPanelShowHeading !== true)
                 settings += this._buildSettingAttribute("ft-connection-panel-show-heading", "false");
 
-            settings += ">\n</ft-connection-panel-settings\n";
+            settings += ">\n</ft-connection-panel-settings>\n";
 
             return settings;
         },
