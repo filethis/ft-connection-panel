@@ -1,5 +1,5 @@
 <!--
-Copyright 2018 FileThis, Inc.
+Copyright 2017 FileThis, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,43 +15,38 @@ limitations under the License.
 -->
 
 
-<link rel="import" href="../ft-global-variable/ft-global-variable.html">
+<!-- Imports -->
+<link rel="import" href="../iron-meta/iron-meta.html">
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="ft-connection-panel-settings-behavior.html">
 
 
-<!--
-`<ft-connection-panel-settings>`
-
-Settings applied to the ft-connection-panel.
-
-@demo
--->
 <dom-module id="ft-connection-panel-settings">
 
     <script>
-        Polymer({
 
+        Polymer
+        ({
             is: 'ft-connection-panel-settings',
 
-            behaviors: [FileThis.ConnectionPanelSettingsBehavior],
+            behaviors: [
+                FileThis.ConnectionPanelSettingsBehavior,
+            ],
 
-            attached: function()
+            ready: function()
             {
-                // setTimeout(function()
-                // {
-                //     this._initializeSettings();
-                // }.bind(this), 1000);
-                this.async(this._initializeSettings);
+                this._storeSettings();
             },
 
-            _initializeSettings: function()
+            _storeSettings: function()
             {
-                window.FileThis.FtGlobalVariables.propagateValue("ft-connection-panel-show-heading", this.showHeading);
-                window.FileThis.FtGlobalVariables.propagateValue("ft-connection-panel-heading", this.heading);
-                window.FileThis.FtGlobalVariables.propagateValue("ft-connection-panel-show-delete-button", this.showDeleteButton);
+                new Polymer.IronMeta({type: "setting", key: "ft-connection-panel-show-heading", value: this.ftConnectionPanelShowHeading});
+                new Polymer.IronMeta({type: "setting", key: "ft-connection-panel-heading", value: this.ftConnectionPanelHeading});
+                new Polymer.IronMeta({type: "setting", key: "ft-connection-panel-show-delete-button", value: this.ftConnectionPanelShowDeleteButton});
             },
-
         });
+
     </script>
+
 </dom-module>
+

@@ -17,7 +17,7 @@ limitations under the License.
 
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
-<link rel="import" href="../ft-global-variable/ft-global-variable.html">
+<link rel="import" href="../ft-connection-list-item/ft-connection-list-item-settings-behavior.html">
 <link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
@@ -62,11 +62,6 @@ This element displays a list of FileThis connection resources. Above the list is
             }
         </style>
 
-        <!-- Settings -->
-        <ft-global-variable name="ft-connection-panel-show-heading" value="{{showHeading}}"></ft-global-variable>
-        <ft-global-variable name="ft-connection-panel-heading" value="{{heading}}"></ft-global-variable>
-        <ft-global-variable name="ft-connection-panel-show-delete-button" value="{{showDeleteButton}}"></ft-global-variable>
-
         <!-- Header -->
         <div
             id="header"
@@ -76,9 +71,9 @@ This element displays a list of FileThis connection resources. Above the list is
             <!-- Heading -->
             <iron-label
                 id="heading"
-                hidden$="[[!showHeading]]"
+                hidden$="[[!ftConnectionPanelShowHeading]]"
             >
-                [[heading]]
+                [[ftConnectionPanelHeading]]
             </iron-label>
 
             <div class="flex"></div>
@@ -89,7 +84,7 @@ This element displays a list of FileThis connection resources. Above the list is
                 icon="delete"
                 label="Delete"
                 disabled="[[!selectedConnection]]"
-                hidden$="[[!showDeleteButton]]"
+                hidden$="[[!ftConnectionPanelShowDeleteButton]]"
                 on-tap="_onDeleteButtonClicked"
             >
             </ft-labeled-icon-button>
@@ -101,6 +96,7 @@ This element displays a list of FileThis connection resources. Above the list is
             class="flex"
             connections="[[connections]]"
             selected-connection="{{selectedConnection}}"
+            ft-connection-list-item-allow-manual-fetch="{{ftConnectionListItemAllowManualFetch}}"
         >
         </ft-connection-list>
 
@@ -116,12 +112,13 @@ This element displays a list of FileThis connection resources. Above the list is
 
             behaviors: [
                 FileThis.ConnectionPanelSettingsBehavior,
+                FileThis.ConnectionListItemSettingsBehavior,
                 Polymer.IronResizableBehavior,
             ],
 
             observers:
             [
-                "_onSettingsPropertyChanged(heading, showHeading, showDeleteButton)"
+                "_onSettingsPropertyChanged(ftConnectionPanelHeading, ftConnectionPanelShowHeading, ftConnectionPanelShowDeleteButton)"
             ],
 
             /**
@@ -174,9 +171,9 @@ This element displays a list of FileThis connection resources. Above the list is
 
             _canShowHeader: function()
             {
-                if (this.showHeading)
+                if (this.ftConnectionPanelShowHeading)
                     return true;
-                if (this.showDeleteButton)
+                if (this.ftConnectionPanelShowDeleteButton)
                     return true;
                 return false;
             },

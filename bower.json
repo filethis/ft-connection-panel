@@ -9,7 +9,6 @@
     "ft-connection-list-item": "filethis/ft-connection-list-item#^1.0.29",
     "ft-element-demo": "filethis/ft-element-demo#^1.0.13",
     "ft-error-behavior": "filethis/ft-error-behavior#^1.0.20",
-    "ft-global-variable": "filethis/ft-global-variable#^1.0.5",
     "ft-http-behavior": "filethis/ft-http-behavior#^1.0.20",
     "ft-labeled-icon-button": "filethis/ft-labeled-icon-button#^1.0.19",
     "ft-scrolling-behavior": "filethis/ft-scrolling-behavior#^1.0.17",

@@ -19,10 +19,11 @@ limitations under the License.
 
 <!-- Imports -->
 <link rel="import" href="../../ft-element-demo/ft-element-demo.html">
+<link rel="import" href="../../ft-connection-list-item/ft-connection-list-item-settings.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../ft-connection-panel-settings.html">
 <link rel="import" href="../ft-connection-panel.html">
+<link rel="import" href="../ft-connection-panel-settings.html">
 <link rel="import" href="ft-connection-panel-settings-editor.html">
 
 
@@ -45,17 +46,30 @@ An element that displays a list of FileThis connection resources
             }
         </style>
 
-        <ft-connection-panel-settings></ft-connection-panel-settings>
+        <!-- Set a couple settings -->
+
+        <ft-connection-panel-settings
+            ft-connection-panel-heading="These are your connections"
+        >
+        </ft-connection-panel-settings>
+
+        <ft-connection-list-item-settings
+            ft-connection-list-item-allow-manual-fetch=true
+        >
+        </ft-connection-list-item-settings>
 
         <ft-element-demo
-                name="ft-connection-panel"
-                show-config="true"
-                style="width:100%; height: 100%; ">
-
+            name="ft-connection-panel"
+            show-config="true"
+            style="width:100%; height: 100%; "
+        >
             <!-- Settings -->
             <ft-connection-panel-settings-editor
                 slot="config"
                 style="height:100%; padding:20px; "
+                ft-connection-panel-show-heading="{{ftConnectionPanelShowHeading}}"
+                ft-connection-panel-heading="{{ftConnectionPanelHeading}}"
+                ft-connection-panel-show-delete-button="{{ftConnectionPanelShowDeleteButton}}"
             >
             </ft-connection-panel-settings-editor>
 
@@ -64,6 +78,9 @@ An element that displays a list of FileThis connection resources
                 slot="instance"
                 id="panel"
                 style="width:100%; height: 100%; background-color: white; "
+                ft-connection-panel-show-heading="{{ftConnectionPanelShowHeading}}"
+                ft-connection-panel-heading="{{ftConnectionPanelHeading}}"
+                ft-connection-panel-show-delete-button="{{ftConnectionPanelShowDeleteButton}}"
             >
             </ft-connection-panel>
 

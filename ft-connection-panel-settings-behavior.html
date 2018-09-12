@@ -17,7 +17,6 @@ limitations under the License.
 
 <link rel="import" href="../polymer/polymer.html">
 
-
 <script>
 
     // Make sure the "FileThis" namespace exists
@@ -34,23 +33,26 @@ limitations under the License.
     FileThis.ConnectionPanelSettingsBehavior = {
 
         observers:[
-            '_onInternalSettingsChanged(showHeading, heading, showDeleteButton)',
+            '_onInternalSettingsChanged(ftConnectionPanelShowHeading, ftConnectionPanelHeading, ftConnectionPanelShowDeleteButton)',
         ],
 
         properties: {
 
             /** Show a heading string in the header. */
-            showHeading:
+            ftConnectionPanelShowHeading:
             {
                 type: Object,  // Can't use Boolean
-                value: true
+                value: true,
+                notify: true,
             },
 
-            /** Heading to display when "showHeading" is true. */
-            heading:
+            /** Heading to display when "ftConnectionPanelShowHeading" is true. */
+            ftConnectionPanelHeading:
             {
                 type: String,
-                value: "Connections"
+                value: "Connections",
+                notify: true,
+                observer: "_fooo"
             },
 
             /**
@@ -60,12 +62,38 @@ limitations under the License.
              *
              * @type {boolean}
              */
-            showDeleteButton:
+            ftConnectionPanelShowDeleteButton:
             {
                 type: Object,
-                value: true
+                value: true,
+                notify: true,
             },
 
+        },
+
+        _fooo: function(to, from)
+        {
+            var foo = "bar";
+        },
+
+        ready: function()
+        {
+            this._applySettings();
+        },
+
+        _applySettings: function()
+        {
+            this._applySettingToProperty("ft-connection-panel-show-heading", "ftConnectionPanelShowHeading");
+            this._applySettingToProperty("ft-connection-panel-heading", "ftConnectionPanelHeading");
+            this._applySettingToProperty("ft-connection-panel-show-delete-button", "ftConnectionPanelShowDeleteButton");
+        },
+
+        _applySettingToProperty: function(settingName, propertyName)
+        {
+            var meta = new Polymer.IronMeta({type: "setting", key: settingName});
+            var value = meta.value;
+            if (value !== undefined)
+                this.set(propertyName, value);
         },
 
         _onInternalSettingsChanged: function(to)
@@ -73,44 +101,39 @@ limitations under the License.
             this.fire("internal-settings-changed");
         },
 
-        generateImports: function()
+        generateSettingsElement: function()
         {
             if (!this._hasSettings())
                 return "";
 
-            var imports = "<link rel=\"import\" href=\"../bower_components/ft-connection-panel/ft-connection-panel-settings.html\">\n";
-            return imports;
-        },
+            var settings = "\n<ft-connection-panel-settings";
 
-        generateSettings: function()
-        {
-            if (!this._hasSettings())
-                return "";
+            // Keep alphabetized
+            if (this.ftConnectionPanelHeading !== "Connections")
+                settings += this._buildSettingAttribute("ft-connection-panel-heading", this.ftConnectionPanelHeading);
+            if (this.ftConnectionPanelShowDeleteButton !== true)
+                settings += this._buildSettingAttribute("ft-connection-panel-show-delete-button", "false");
+            if (this.ftConnectionPanelShowHeading !== true)
+                settings += this._buildSettingAttribute("ft-connection-panel-show-heading", "false");
 
-            var attributes = "";
-            if (this.showHeading !== true)
-                attributes += '\n    show-heading="false"';
-            if (this.heading !== "Connections")
-                attributes += '\n    heading="' + this.heading + '"';
-            if (this.showDeleteButton !== true)
-                attributes += '\n    show-delete-button="false"';
-
-            var settings = "";
-
-            settings += "\n<ft-connection-panel-settings ";
-            settings += attributes;
-            settings += ">\n</ft-connection-panel-settings>\n";
+            settings += ">\n</ft-connection-panel-settings\n";
 
             return settings;
         },
 
+        // TODO: Factor out from here and copies in other classes
+        _buildSettingAttribute: function(propertyName, propertyValue)
+        {
+            return '\n    ' + propertyName + '="' + propertyValue + '"';
+        },
+
         _hasSettings: function()
         {
-            if (this.showHeading !== true)
+            if (this.ftConnectionPanelShowHeading !== true)
                 return true;
-            if (this.heading !== "Connections")
+            if (this.ftConnectionPanelHeading !== "Connections")
                 return true;
-            if (this.showDeleteButton !== true)
+            if (this.ftConnectionPanelShowDeleteButton !== true)
                 return true;
             return false;
         },
