@@ -1,6 +1,6 @@
 # Project configuration
 NAME=ft-connection-panel
-VERSION=1.0.26
+VERSION=1.0.27
 LOCAL_PORT=3543
 GITHUB_USER=filethis
 GITHUB_USER_ABBREV=ft

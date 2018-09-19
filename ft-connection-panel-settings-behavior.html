@@ -74,15 +74,10 @@ limitations under the License.
         {
             this.async(function()
             {
-                this._applySettings();
+                this._applySettingToProperty("ft-connection-panel-show-heading", "ftConnectionPanelShowHeading");
+                this._applySettingToProperty("ft-connection-panel-heading", "ftConnectionPanelHeading");
+                this._applySettingToProperty("ft-connection-panel-show-delete-button", "ftConnectionPanelShowDeleteButton");
             });
-        },
-
-        _applySettings: function()
-        {
-            this._applySettingToProperty("ft-connection-panel-show-heading", "ftConnectionPanelShowHeading");
-            this._applySettingToProperty("ft-connection-panel-heading", "ftConnectionPanelHeading");
-            this._applySettingToProperty("ft-connection-panel-show-delete-button", "ftConnectionPanelShowDeleteButton");
         },
 
         _applySettingToProperty: function(settingName, propertyName)
