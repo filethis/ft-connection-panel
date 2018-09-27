@@ -93,30 +93,30 @@ limitations under the License.
             this.fire("internal-settings-changed");
         },
 
-        generateSettingsElement: function()
+        generateSettingsElement: function(indent)
         {
             if (!this.hasSettings())
                 return "";
 
-            var settings = "<ft-connection-panel-settings";
+            var settings = indent + "<ft-connection-panel-settings";
 
             // Keep alphabetized
             if (this.ftConnectionPanelHeading !== "Connections")
-                settings += this._buildSettingAttribute("ft-connection-panel-heading", this.ftConnectionPanelHeading);
+                settings += this._buildSettingAttribute("ft-connection-panel-heading", this.ftConnectionPanelHeading, indent);
             if (this.ftConnectionPanelShowDeleteButton !== true)
-                settings += this._buildSettingAttribute("ft-connection-panel-show-delete-button", "false");
+                settings += this._buildSettingAttribute("ft-connection-panel-show-delete-button", "false", indent);
             if (this.ftConnectionPanelShowHeading !== true)
-                settings += this._buildSettingAttribute("ft-connection-panel-show-heading", "false");
+                settings += this._buildSettingAttribute("ft-connection-panel-show-heading", "false", indent);
 
-            settings += ">\n</ft-connection-panel-settings>\n";
+            settings += ">\n" + indent + "</ft-connection-panel-settings>\n";
 
             return settings;
         },
 
         // TODO: Factor out from here and copies in other classes
-        _buildSettingAttribute: function(propertyName, propertyValue)
+        _buildSettingAttribute: function(propertyName, propertyValue, indent)
         {
-            return '\n    ' + propertyName + '="' + propertyValue + '"';
+            return '\n' + indent + '    ' + propertyName + '="' + propertyValue + '"';
         },
 
         hasSettings: function()
