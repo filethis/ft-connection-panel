@@ -18,14 +18,13 @@ limitations under the License.
 <link rel="import" href="../ft-confirmation-dialog/ft-confirmation-dialog.html">
 <link rel="import" href="../ft-connection-list/ft-connection-list.html">
 <link rel="import" href="../ft-connection-list-item/ft-connection-list-item-settings-behavior.html">
+<link rel="import" href="../ft-connection-panel/ft-connection-panel-settings-behavior.html">
 <link rel="import" href="../ft-labeled-icon-button/ft-labeled-icon-button.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-label/iron-label.html">
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="ft-connection-panel-settings-behavior.html">
-<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.html">
 
 
 <!--
@@ -62,15 +61,6 @@ This element displays a list of FileThis connection resources. Above the list is
                 @apply --ft-connection-panel-heading;
             }
         </style>
-
-        <app-localstorage-document key="ftConnectionPanelShowHeading" data="{{ftConnectionPanelShowHeading}}">
-        </app-localstorage-document>
-
-        <app-localstorage-document key="ftConnectionPanelHeading" data="{{ftConnectionPanelHeading}}">
-        </app-localstorage-document>
-
-        <app-localstorage-document key="ftConnectionPanelShowDeleteButton" data="{{ftConnectionPanelShowDeleteButton}}">
-        </app-localstorage-document>
 
         <!-- Header -->
         <div
