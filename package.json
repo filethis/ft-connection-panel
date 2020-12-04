@@ -1,7 +1,7 @@
 {
   "description": "An element that displays a list of FileThis connection resources",
-  "name": "filethis/ft-connection-panel",
-  "version": "filethis/1.0.28",
+  "name": "ft-connection-panel",
+  "version": "1.0.28",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
