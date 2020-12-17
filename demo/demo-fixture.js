@@ -26,7 +26,6 @@ An element that displays a list of FileThis connection resources
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import 'ft-element-demo/ft-element-demo.js';
 
 import 'ft-connection-list-item/ft-connection-list-item-settings.js';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
@@ -46,6 +45,8 @@ Polymer
             :host {
                 display: block;
                 overflow: hidden;
+                width:600px; 
+                height:600px; 
             }
         </style>
 
@@ -57,9 +58,10 @@ Polymer
         <ft-connection-list-item-settings ft-connection-list-item-allow-manual-fetch="true">
         </ft-connection-list-item-settings>
 
-        <ft-element-demo name="ft-connection-panel" show-config="true" style="width:100%; height: 100%; ">
+        <ft-element-demo name="ft-connection-panel" show-config="true" style="width:100%; height:100%; ">
+
             <!-- Settings -->
-            <ft-connection-panel-settings-editor slot="config" style="height:100%; padding:20px; " ft-connection-panel-show-heading="{{ftConnectionPanelShowHeading}}" ft-connection-panel-heading="{{ftConnectionPanelHeading}}" ft-connection-panel-show-delete-button="{{ftConnectionPanelShowDeleteButton}}">
+            <ft-connection-panel-settings-editor slot="config" style="padding:20px; " ft-connection-panel-show-heading="{{ftConnectionPanelShowHeading}}" ft-connection-panel-heading="{{ftConnectionPanelHeading}}" ft-connection-panel-show-delete-button="{{ftConnectionPanelShowDeleteButton}}">
             </ft-connection-panel-settings-editor>
 
             <!-- Panel -->
