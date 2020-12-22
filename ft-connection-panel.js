@@ -25,12 +25,12 @@ This element displays a list of FileThis connection resources. Above the list is
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import 'ft-confirmation-dialog/ft-confirmation-dialog.js';
+import '@filethis/ft-confirmation-dialog/ft-confirmation-dialog.js';
 
-import 'ft-connection-list/ft-connection-list.js';
-import 'ft-connection-list-item/ft-connection-list-item-settings-behavior.js';
+import '@filethis/ft-connection-list/ft-connection-list.js';
+import '@filethis/ft-connection-list-item/ft-connection-list-item-settings-behavior.js';
 import './ft-connection-panel-settings-behavior.js';
-import 'ft-labeled-icon-button/ft-labeled-icon-button.js';
+import '@filethis/ft-labeled-icon-button/ft-labeled-icon-button.js';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 import '@polymer/iron-label/iron-label.js';
 import '@polymer/iron-list/iron-list.js';

@@ -27,7 +27,7 @@ An element that displays a list of FileThis connection resources
   then delete this comment!
 */
 
-import 'ft-connection-list-item/ft-connection-list-item-settings.js';
+import '@filethis/ft-connection-list-item/ft-connection-list-item-settings.js';
 import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 import '@polymer/polymer/polymer-legacy.js';
 import '../ft-connection-panel.js';
