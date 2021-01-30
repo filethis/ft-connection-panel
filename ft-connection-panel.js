@@ -141,6 +141,11 @@ Polymer({
           value: true
       },
 
+      useModalDeleteConnectionDialog:
+      {
+          type: Boolean,
+          value: true
+      },
   },
 
   _showButtonChanged: function(to, from)
@@ -160,21 +165,22 @@ Polymer({
 
   _onDeleteButtonClicked: function(event)
   {
-      var overrideWarning = event.metaKey;
-      if (overrideWarning)
+      if (this.useModalDeleteConnectionDialog)
       {
-          this.fire('delete-connection-command', this.selectedConnection);
-          return;
-      }
-
-      var prompt = "Are you sure you want to delete the selected connection?";
-      return this.$.confirmationDialog.confirm(prompt, "Delete Connection")
-          .then(function(choice)
-          {
-              if (choice === "cancel")
-                  return;
+          var overrideWarning = event.metaKey;
+          if (overrideWarning) {
               this.fire('delete-connection-command', this.selectedConnection);
-          }.bind(this))
+              return;
+          }
+
+          var prompt = "Are you sure you want to delete the selected connection?";
+          return this.$.confirmationDialog.confirm(prompt, "Delete Connection")
+              .then(function (choice) {
+                  if (choice === "cancel")
+                      return;
+                  this.fire('delete-connection-command', this.selectedConnection);
+              }.bind(this))
+      }
   },
 
   _onSettingsPropertyChanged: function()
